@@ -117,7 +117,7 @@
 				  "properties": {
 					"codigo_ret": {
 					  "type": "string",
-					  "example": "000"
+					  "example": "500"
 					},
 					"mensagem_ret": {
 					  "type": "string",
@@ -139,7 +139,7 @@
 				  "properties": {
 					"codigo_ret": {
 					  "type": "string",
-					  "example": "000"
+					  "example": "999"
 					},
 					"mensagem_ret": {
 					  "type": "string",
