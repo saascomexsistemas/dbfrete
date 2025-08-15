@@ -1,0 +1,158 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API DBFRETE - Frete Rodoviário",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Suporte Técnico",
+      "email": "suporte@saascomex.com.br"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://cloudxxx.saascomex.com.br/saascomex_99999999999999/rest",
+      "description": "substituir o xxx pela versão do cloud e o 99999999999999 pelo path"
+    }
+  ],
+  "paths": {
+    "/dbfrete_rodoviario": {
+      "post": {
+        "tags": [
+          "DBFRETE - Frete Rodoviário"
+        ],
+        "summary": "Integração para Frete Rodoviário.",
+        "parameters": [
+          {
+            "name": "auth_usuario",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            }
+          },
+          {
+            "name": "auth_senha",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            }
+          },
+          {
+            "name": "auth_chave",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 50
+            }
+          }
+		],
+		"requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "PROCESSO": {
+                    "type": "object",
+                    "properties": {
+                      "PROC_NUMERO": { "type": "integer", "example": 99999 },
+                      "PROC_CNPJ_CLIENTE": { "type": "integer", "example": 99999999999999 },
+                      "PROC_RAZAO_CLIENTE": { "type": "string", "example": "RAZAO SOCIAL DO CLIENTE" },
+                      "PROC_NOME_CLIENTE": { "type": "string", "example": "NOME RESUMIDO DO CLIENTE" },
+                      "PROC_REFERENCIA": { "type": "string", "example": "IR-0008/2025" },
+                      "PROC_REF_CLIENTE": { "type": "string", "example": "IR-0008/2025_REF_CLI" },
+                      "PROC_OPERACAO": { "type": "string", "example": "IMPORTACAO" },
+                      "PROC_MODAL": { "type": "string", "example": "RODOVIARIO" }
+                    },
+                    "required": [
+                      "PROC_NUMERO",
+                      "PROC_CNPJ_CLIENTE",
+                      "PROC_RAZAO_CLIENTE",
+                      "PROC_NOME_CLIENTE",
+                      "PROC_REFERENCIA",
+                      "PROC_REF_CLIENTE",
+                      "PROC_OPERACAO",
+                      "PROC_MODAL"
+                    ]
+                  }
+                },
+                "required": ["PROCESSO"]
+              }
+            }
+          }
+        },
+        "responses": {
+		  "200": {
+			"description": "Sucesso - Processado com sucesso",
+			"content": {
+			  "application/json": {
+				"schema": {
+				  "type": "object",
+				  "properties": {
+					"codigo_ret": {
+					  "type": "string",
+					  "example": "000"
+					},
+					"mensagem_ret": {
+					  "type": "string",
+					  "example": "PROCESSADO COM SUCESSO"
+					}
+				  },
+				  "required": ["codigo_ret", "mensagem_ret"]
+				}
+			  }
+			}
+          },
+          "500": {
+            "description": "Falha xyz",
+			"content": {
+			  "application/json": {
+				"schema": {
+				  "type": "object",
+				  "properties": {
+					"codigo_ret": {
+					  "type": "string",
+					  "example": "000"
+					},
+					"mensagem_ret": {
+					  "type": "string",
+					  "example": "Falha xyz"
+					}
+				  },
+				  "required": ["codigo_ret", "mensagem_ret"]
+				}
+			  }
+			}
+          },
+
+          "999": {
+            "description": "Falha indefinida",
+			"content": {
+			  "application/json": {
+				"schema": {
+				  "type": "object",
+				  "properties": {
+					"codigo_ret": {
+					  "type": "string",
+					  "example": "000"
+					},
+					"mensagem_ret": {
+					  "type": "string",
+					  "example": "Falha sem causa definida"
+					}
+				  },
+				  "required": ["codigo_ret", "mensagem_ret"]
+				}
+			  }
+			}
+          }
+        }
+      }
+    },
+  }
+}
