@@ -154,5 +154,901 @@
         }
       }
     },
+	"/ws_dbfrete/ACAO_INTEGRACAO: CODIGOS_TAXAS_NUMERARIO": {
+      "post": {
+		"tags": [
+          "Saascomex - Consulta Códigos Taxas de Numerário"
+        ],
+        "summary": "Consulta de Taxas de Numerário Saascomex - DBFrete",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dados64": {
+                    "type": "string",
+                    "format": "byte",
+                    "description": "Conteúdo em **base64** de um JSON no seguinte formato:\n```json\n{\n  \"AUTENTICACAO\": {\n    \"usuario\": \"user\",\n    \"senha\": \"pass\",\n    \"chave\": \"user_key\"\n  },\n  \"ACAO_INTEGRACAO\": \"CODIGOS_TAXAS_NUMERARIO\"\n}\n```"
+                  }
+                }
+              },
+              "examples": {
+                "exemploOriginal": {
+                  "summary": "JSON antes de converter",
+                  "value": {
+                    "dados64": "{\n  \"AUTENTICACAO\": {\n    \"usuario\":\"user\",\n    \"senha\":\"pass\",\n    \"chave\":\"user_key\"\n  },\n  \"ACAO_INTEGRACAO\": \"CODIGOS_TAXAS_NUMERARIO\"\n}"
+                  }
+                },
+                "exemploBase64": {
+                  "summary": "JSON Base64",
+                  "value": {
+                    "dados64": "ewoJIkFVVEVOVElDQUNBTyI6IHsKCQkidXN1YXJpbyI6InVzZXIiLAoJCSJzZW5oYSI6InBhc3MiLAoJCSJjaGF2ZSI6InVzZXJfa2V5IgoJfSwKCSJBQ0FPX0lOVEVHUklBQ0FPIjogIkNPRElHT1NfVEFYQVNfTlVNRVJBUklPIgp9"
+                  }
+                }
+              }
+            }
+          }
+        },
+		
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+                  "exemploBase64": {
+                    "summary": "JSON Base64",
+                    "value": {
+                      "RETORNO": "eyJjb2RpZ28iOiAiMDAwIiwgInRheGFzIjogW3sidGF4YV9pZGVudGlmaWNhY2FjYW8iOiAiSE9NT0xPR0FDTyBJRF9UQVhBIiwgInRheGFfZGVzY3JpY2FvIjogIkhPTU9MT0dBQ08gREVTQ1JJQ0FPPV9UQVhBIn1dfQ=="
+                    }
+                  },
+				  "exemploOriginal": {
+                    "summary": "JSON Decodificado",
+                    "value": {
+                      "RETORNO": "{\n  \"codigo\": \"000\",\n  \"taxas\": [\n    {\n      \"taxa_identificacacao\": \"HOMOLOGACAO ID_TAXA\",\n      \"taxa_descricao\": \"HOMOLOGACAO DESCRICAO_TAXA\"\n    }\n  ]\n}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+		  "001": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDFcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEdFUkFMKTogREFET1MgSU5Ww4FMSURPU1wifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"001\",\n  \"mensagem\": \"ERRO (GERAL): DADOS INVÁLIDOS\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "002": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDJcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IE9CUklHQVRPUklPIElORk9STUFSIE8gVVNVQVJJT1wifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"002\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): OBRIGATORIO INFORMAR O USUARIO\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "003": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDNcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IE9CUklHQVRPUklPIElORk9STUFSIEEgU0VOSEFcIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"003\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): OBRIGATORIO INFORMAR A SENHA\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "004": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDRcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IE9CUklHQVRPUklPIElORk9STUFSIEEgQ0hBVkUgREEgRU1QUkVTQVwifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"004\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): OBRIGATORIO INFORMAR A CHAVE DA EMPRESA\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "005": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDRcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IE9CUklHQVRPUklPIElORk9STUFSIEEgQ0hBVkUgREEgRU1QUkVTQVwifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"004\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): OBRIGATORIO INFORMAR A CHAVE DA EMPRESA\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "006": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "eyJjb2RpZ28iOiAiMDA2IiwgIm1lbnNhZ2VtIjogIkVSUk8gKEFVVEVOVElDQUNBTyk6IEFDVVNPIE5BTyBQRVJNSVRJRE8uIFZFUlVGSUNFIE9TIERBRE9TIERPIFVTVUFSSU8uIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"006\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): ACESSO NAO PERMITIDO. VERIFIQUE OS DADOS DO USUARIO.\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "007": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDVcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IEhPUkFSSU8gREUgQUNFU1NPIE5BTyBQRVJNSVRJRE8uIFBFUk1JVElETyBERTogSEg6TU0gIEFURTogSEg6TU1cIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"007\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): HORARIO DE ACESSO NAO PERMITIDO. PERMITIDO DE: HH:MM  ATE: HH:MM\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "008": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDhcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEdFUkFMKTogRU5EUE9JTlQgREVTQUJJTElUQURPXCJ9"
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"008\",\n  \"mensagem\": \"ERRO (GERAL): ENDPOINT DESABILITADO\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "009": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDlcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEdFUkFMKTogT1BDQU8gREUgRU5EUE9JTlQgSU5WQUxJRE9cIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"009\",\n  \"mensagem\": \"ERRO (GERAL): OPCAO DE ENDPOINT INVALIDO\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          }
+        }
+      }
+    },
+	"/ws_dbfrete/ACAO_INTEGRACAO: INCLUIR_TAXAS_NUMERARIO": {
+      "post": {
+		"tags": [
+          "Saascomex - Incluir Taxas de Numerário"
+        ],
+        "summary": "Inserção de Taxas de Numerário em processos Saascomex - DBFrete",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dados64": {
+                    "type": "string",
+                    "format": "byte",
+                    "description": "Conteúdo em **base64** de um JSON no seguinte formato:\n```json\n{\n  \"AUTENTICACAO\": {\n    \"usuario\": \"user\",\n    \"senha\": \"pass\",\n    \"chave\": \"user_key\"\n  },\n  \"ACAO_INTEGRACAO\": \"INCLUIR_TAXAS_NUMERARIO\"\n}\n```"
+                  }
+                }
+              },
+              "examples": {
+                "exemploOriginal": {
+                  "summary": "JSON antes de converter",
+                  "value": {
+					"dados64": "{\n  \"AUTENTICACAO\": {\n    \"usuario\": \"user\",\n    \"senha\": \"pass\",\n    \"chave\": \"user_key\"\n  },\n  \"ACAO_INTEGRACAO\": \"INCLUIR_TAXAS_NUMERARIO\",\n  \"DADOS\": {\n    \"TAXAS_FRETE_RODOVIARIO\": [\n      {\n        \"processo\": 888888888,\n        \"taxas\": [\n          {\n            \"taxa_identificacao\": \"ID_TAXA_NUMERARIO\",\n            \"taxa_valor\": 1.1\n          },\n          {\n            \"taxa_identificacao\": \"ID_TAXA_NUMERARIO\",\n            \"taxa_valor\": 1.2\n          }\n        ]\n      },\n      {\n        \"processo\": 99999999,\n        \"taxas\": [\n          {\n            \"taxa_identificacao\": \"ID_TAXA_NUMERARIO\",\n            \"taxa_valor\": 2.1\n          }\n        ]\n      }\n    ]\n  }\n}"
+				  }
+                },
+                "exemploBase64": {
+                  "summary": "JSON Base64",
+                  "value": {
+                    "dados64": "e1xuICBcIkFVVEVOVElDQUNBT1wiOiB7XG4gICAgXCJ1c3VhcmlvXCI6IFwidXNlclwiLFxuICAgIFwic2VuaGFcIjogXCJwYXNzXCIsXG4gICAgXCJjaGF2ZVwiOiBcInVzZXJfa2V5XCJcbiAgfSxcbiAgXCJBQ0FPX0lOVEVHUkFDQU9cIjogXCJJTkNMVUlSX1RBWEFTX05VTUVSQVJJT1wiLFxuICBcIkRBRE9TXCI6IHtcbiAgICBcIlRBWEFTX0ZSRVRFX1JPRE9WSUFSSU9cIjogW1xuICAgICAge1xuICAgICAgICBcInByb2Nlc3NvXCI6IDg4ODg4ODg4OCxcbiAgICAgICAgXCJ0YXhhc1wiOiBbXG4gICAgICAgICAge1xuICAgICAgICAgICAgXCJ0YXhhX2lkZW50aWZpY2FjYW9cIjogXCJJRF9UQVhBX05VTUVSQVJJT1wiLFxuICAgICAgICAgICAgXCJ0YXhhX3ZhbG9yXCI6IDEuMVxuICAgICAgICAgIH0sXG4gICAgICAgICAge1xuICAgICAgICAgICAgXCJ0YXhhX2lkZW50aWZpY2FjYW9cIjogXCJJRF9UQVhBX05VTUVSQVJJT1wiLFxuICAgICAgICAgICAgXCJ0YXhhX3ZhbG9yXCI6IDEuMlxuICAgICAgICAgIH1cbiAgICAgICAgXVxuICAgICAgfSxcbiAgICAgIHtcbiAgICAgICAgXCJwcm9jZXNzb1wiOiA5OTk5OTk5OSxcbiAgICAgICAgXCJ0YXhhc1wiOiBbXG4gICAgICAgICAge1xuICAgICAgICAgICAgXCJ0YXhhX2lkZW50aWZpY2FjYW9cIjogXCJJRF9UQVhBX05VTUVSQVJJT1wiLFxuICAgICAgICAgICAgXCJ0YXhhX3ZhbG9yXCI6IDIuMVxuICAgICAgICAgIH1cbiAgICAgICAgXVxuICAgICAgfVxuICAgIF1cbiAgfVxufQ=="
+                  }
+                }
+              }
+            }
+          }
+        },
+		
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+                  "exemploBase64": {
+                    "summary": "JSON Base64",
+                    "value": {
+                      "RETORNO": "W3tcInByb2Nlc3NvXCI6IFwiMTE4MTZcIiwgXCJjb2RpZ29cIjogXCIwMDhcIiwgXCJtZW5zYWdlbVwiOiBcIkNPTkZJR1VSQUNBTyBFTSBIT01PTE9HQUNBTzogVEFYQVMgRE8gUFJPQ0VTU08gVkVSSUZJQ0FEQVMgTUFTIE5BTyBHUkFWQURBUy5cIixcInRheGFzXCI6IFt7XCJ0YXhhXCI6IFwiQ09NQlVTVElWRUxcIiwgXCJjb2RpZ29cIjogXCIwMDBcIiwgXCJtZW5zYWdlbVwiOiBcIlRBWEEgVkFMSURBREFcIn0se1widGF4YVwiOiBcIkZSRVRFXCIsIFwiY29kaWdvXCI6IFwiMDAwXCIsIFwibWVuc2FnZW1cIjogXCJUQVhBIFZBTElEQURBXCJ9LHtcInRheGFcIjogXCJJRF9UQVhBX05VTUVSQVJJT1wiLCBcImNvZGlnb1wiOiBcIjMwMFwiLCBcIm1lbnNhZ2VtXCI6IFwiRVJSTyAoUEVESURPKTogVEFYQTogSURfVEFYQV9OVU1FUkFSSU8gTkFPIEVOQ09OVFJBREEuIElOQ0xVU0FPIE5BTyBQRVJNSVRJREEuXCJ9XX0se1wicHJvY2Vzc29cIjogXCI5OTk5OTk5OVwiLCBcImNvZGlnb1wiOiBcIjEwMFwiLCBcIm1lbnNhZ2VtXCI6IFwiUFJPQ0VTU086IE5BTyBFTkNPTlRSQURPLlwifV0="
+                    }
+                  },
+				  "exemploOriginal": {
+                    "summary": "JSON Decodificado",
+                    "value": {
+                      "RETORNO": "[{\"processo\": \"11816\", \"codigo\": \"008\", \"mensagem\": \"CONFIGURACAO EM HOMOLOGACAO: TAXAS DO PROCESSO VERIFICADAS MAS NAO GRAVADAS.\",\"taxas\": [{\"taxa\": \"COMBUSTIVEL\", \"codigo\": \"000\", \"mensagem\": \"TAXA VALIDADA\"},{\"taxa\": \"FRETE\", \"codigo\": \"000\", \"mensagem\": \"TAXA VALIDADA\"},{\"taxa\": \"ID_TAXA_NUMERARIO\", \"codigo\": \"300\", \"mensagem\": \"ERRO (PEDIDO): TAXA: ID_TAXA_NUMERARIO NAO ENCONTRADA. INCLUSAO NAO PERMITIDA.\"}]},{\"processo\": \"99999999\", \"codigo\": \"100\", \"mensagem\": \"PROCESSO: NAO ENCONTRADO.\"}]"
+                    }
+                  }
+                }
+              }
+            }
+          },
+		  "001": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDFcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEdFUkFMKTogREFET1MgSU5Ww4FMSURPU1wifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"001\",\n  \"mensagem\": \"ERRO (GERAL): DADOS INVÁLIDOS\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "002": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDJcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IE9CUklHQVRPUklPIElORk9STUFSIE8gVVNVQVJJT1wifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"002\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): OBRIGATORIO INFORMAR O USUARIO\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "003": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDNcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IE9CUklHQVRPUklPIElORk9STUFSIEEgU0VOSEFcIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"003\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): OBRIGATORIO INFORMAR A SENHA\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "004": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDRcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IE9CUklHQVRPUklPIElORk9STUFSIEEgQ0hBVkUgREEgRU1QUkVTQVwifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"004\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): OBRIGATORIO INFORMAR A CHAVE DA EMPRESA\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "005": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDRcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IE9CUklHQVRPUklPIElORk9STUFSIEEgQ0hBVkUgREEgRU1QUkVTQVwifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"004\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): OBRIGATORIO INFORMAR A CHAVE DA EMPRESA\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "006": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "eyJjb2RpZ28iOiAiMDA2IiwgIm1lbnNhZ2VtIjogIkVSUk8gKEFVVEVOVElDQUNBTyk6IEFDVVNPIE5BTyBQRVJNSVRJRE8uIFZFUlVGSUNFIE9TIERBRE9TIERPIFVTVUFSSU8uIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"006\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): ACESSO NAO PERMITIDO. VERIFIQUE OS DADOS DO USUARIO.\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "007": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDVcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEFVVEVOVElDQUNBTyk6IEhPUkFSSU8gREUgQUNFU1NPIE5BTyBQRVJNSVRJRE8uIFBFUk1JVElETyBERTogSEg6TU0gIEFURTogSEg6TU1cIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"007\",\n  \"mensagem\": \"ERRO (AUTENTICACAO): HORARIO DE ACESSO NAO PERMITIDO. PERMITIDO DE: HH:MM  ATE: HH:MM\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "008": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDhcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEdFUkFMKTogRU5EUE9JTlQgREVTQUJJTElUQURPXCJ9"
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"008\",\n  \"mensagem\": \"ERRO (GERAL): ENDPOINT DESABILITADO\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  "009": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIwMDlcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKEdFUkFMKTogT1BDQU8gREUgRU5EUE9JTlQgSU5WQUxJRE9cIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"009\",\n  \"mensagem\": \"ERRO (GERAL): OPCAO DE ENDPOINT INVALIDO\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  ".100": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIxMDBcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKFBFRElETyk6IFBST0NFU1NPIE5BTyBFTkNPTlRSQURPXCJ9"
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"100\",\n  \"mensagem\": \"ERRO (PEDIDO): PROCESSO NAO ENCONTRADO\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  ".101": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIxMDFcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKFBFRElETyk6IFBST0NFU1NPIEVOQ0VSUkFETy4gSU5DTFVTQU8gREUgVEFYQVMgTkFPIFBFUk1JVElEQS5cIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"101\",\n  \"mensagem\": \"ERRO (PEDIDO): PROCESSO ENCERRADO. INCLUSAO DE TAXAS NAO PERMITIDA.\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  ".102": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIxMDJcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKFBFRElETyk6IFBST0NFU1NPIEVNIEZBVFVSQU1FTlRPLiBJTkNMVVNBTyBERSBUQVhBUyBOQU8gUEVSTUlUSURBLlwifQ=="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"102\",\n  \"mensagem\": \"ERRO (PEDIDO): PROCESSO EM FATURAMENTO. INCLUSAO DE TAXAS NAO PERMITIDA.\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  ".103": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIxMDNcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKFBFRElETyk6IFBST0NFU1NPIENBTkNFTEFETy4gSU5DTFVTQU8gREUgVEFYQVMgTkFPIFBFUk1JVElEQS5cIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"103\",\n  \"mensagem\": \"ERRO (PEDIDO): PROCESSO CANCELADO. INCLUSAO DE TAXAS NAO PERMITIDA.\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  ".104": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIxMDRcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKFBFRElETyk6IFBST0NFU1NPIFNFTSBUQVhBUyBWQUxJREFTIFBBUkEgSU5DTFVTQU8uIFZFUklGSVFVRSBPUyBERVRBTEhFUy5cIn0="
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"104\",\n  \"mensagem\": \"ERRO (PEDIDO): PROCESSO SEM TAXAS VALIDAS PARA INCLUSAO. VERIFIQUE OS DETALHES.\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  
+		  ".300": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIzMDBcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKFBFRElETyk6IFRBWEEgTkFPIEVOQ09OVFJBREEuIElOQ0xVU0FPIE5BTyBQRVJNSVRJREEuXCJ9"
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"300\",\n  \"mensagem\": \"ERRO (PEDIDO): TAXA NAO ENCONTRADA. INCLUSAO NAO PERMITIDA.\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          },
+		  ".301": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RETORNO": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+				  "exemploBase64": {
+					"summary": "JSON Base64",
+					"value": {
+					  "RETORNO": "e1wiY29kaWdvXCI6XCIzMDFcIiwgXCJtZW5zYWdlbVwiOiBcIkVSUk8gKFBFRElETyk6IFRBWEEgQ09NIFZBTE9SIFpFUk8vVkFaSU8uIElOQ0xVU0FPIE5BTyBQRVJNSVRJREEuXCJ9"
+					}
+				  },
+				  "exemploOriginal": {
+					"summary": "JSON Decodificado",
+					"value": {
+					  "RETORNO": "{\n  \"codigo\": \"301\",\n  \"mensagem\": \"ERRO (PEDIDO): TAXA COM VALOR ZERO/VAZIO. INCLUSAO NAO PERMITIDA.\"\n}"
+					}
+				  }
+				}
+              }
+            }
+          }
+        }
+      }
+    }
   }
+  
 }
