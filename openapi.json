@@ -193,7 +193,7 @@
         },
 		
         "responses": {
-          "200": {
+          "000": {
             "description": "Sucesso",
             "content": {
               "application/json": {
@@ -535,7 +535,7 @@
         },
 		
         "responses": {
-          "200": {
+          "000": {
             "description": "Sucesso",
             "content": {
               "application/json": {
